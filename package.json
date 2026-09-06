@@ -1,0 +1,25 @@
+{
+  "name": "offcycle",
+  "displayName": "OFFCYCLE",
+  "description": "A tiny deterministic game for the moments your coding agent is working.",
+  "version": "0.1.0",
+  "publisher": "arbtraderlabs",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Other"],
+  "activationEvents": ["onView:offcycle.gameView", "onCommand:offcycle.simulateAgentWorking", "onCommand:offcycle.simulateTestPass", "onCommand:offcycle.simulateTestFailure", "onCommand:offcycle.simulateBuildPass"],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": { "activitybar": [{ "id": "offcycle", "title": "OFFCYCLE", "icon": "media/offcycle.svg" }] },
+    "views": { "offcycle": [{ "type": "webview", "id": "offcycle.gameView", "name": "OFFCYCLE" }] },
+    "commands": [
+      { "command": "offcycle.simulateAgentWorking", "title": "OFFCYCLE: Simulate Agent Working" },
+      { "command": "offcycle.simulateTestPass", "title": "OFFCYCLE: Simulate Test Pass" },
+      { "command": "offcycle.simulateTestFailure", "title": "OFFCYCLE: Simulate Test Failure" },
+      { "command": "offcycle.simulateBuildPass", "title": "OFFCYCLE: Simulate Build Pass" }
+    ],
+    "configuration": { "title": "OFFCYCLE", "properties": { "offcycle.sound": { "type": "boolean", "default": true }, "offcycle.agentEvents": { "type": "boolean", "default": true } } }
+  },
+  "scripts": { "build": "npm run clean && tsc && node scripts/copy-webview.mjs", "clean": "node scripts/clean.mjs", "test": "vitest run", "package": "npm run build && vsce package --no-dependencies" },
+  "devDependencies": { "@types/node": "^22.0.0", "@types/vscode": "^1.85.0", "typescript": "^5.6.0", "vitest": "^2.0.0" },
+  "dependencies": {}
+}
